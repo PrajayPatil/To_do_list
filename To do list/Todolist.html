@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-2 (ToDo List)</title>
+    <link rel="stylesheet" href="style.css">
+    <script src=""></script>
+</head>
+<body>
+    <div class="container">
+        <h2>ToDo List</h2>
+        <input type="text" id="taskInput" placeholder="Add New Task">
+        <ul id="taskList"></ul>
+    </div>
+
+<script>
+    function addTask() {
+    var taskInput = document.getElementById("taskInput");
+    var taskList = document.getElementById("taskList");
+    
+    if (taskInput.value.trim() !== "") {
+        var li = document.createElement("li");
+        li.textContent = taskInput.value.trim();
+        var deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.classList.add("delete-btn");
+        deleteBtn.onclick = function() {
+            li.remove();
+        };
+        li.appendChild(deleteBtn);
+        taskList.appendChild(li);
+        taskInput.value = "";
+    } else {
+        alert("Please enter a task!");
+    }
+}
+
+document.getElementById("taskInput").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        addTask();
+    }
+});
+</script>
+</body>
+</html>
